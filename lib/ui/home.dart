@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kopi_lancong_latihan/Color/colors.dart' as NewColor;
+import 'package:kopi_lancong_latihan/Model/Ascendant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'Cashier/cashier.dart';
 
 class home extends StatefulWidget {
   const home({Key? key}) : super(key: key);
@@ -52,7 +55,7 @@ class _homeState extends State<home> {
             )
           ]
       ),
-      body: Stack(
+        body: Stack(
         children: <Widget>[
             Container(
               color: NewColor.PrimaryColors(),
@@ -177,28 +180,31 @@ class _homeState extends State<home> {
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        Center(
-                          child: Container(
-                            height: 65,
-                            width: 65,
-                            child: CircleAvatar(
-                              backgroundColor: NewColor.SecondaryColors(),
-                              foregroundImage: AssetImage("assets/img/cashier.png"),
-                              maxRadius: 60,
+                    GestureDetector(
+                      onTap: () => ToCashier(context),
+                      child: Column(
+                        children: <Widget>[
+                          Center(
+                            child: Container(
+                              height: 65,
+                              width: 65,
+                              child: CircleAvatar(
+                                backgroundColor: NewColor.SecondaryColors(),
+                                foregroundImage: AssetImage("assets/img/cashier.png"),
+                                maxRadius: 60,
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(height: 10,),
-                        Text("Cashier",
-                          style: TextStyle(
-                            color: NewColor.PrimaryColors(),
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold
-                          ),
-                        )
-                      ],
+                          SizedBox(height: 10,),
+                          Text("Cashier",
+                            style: TextStyle(
+                              color: NewColor.PrimaryColors(),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     Column(
                       children: <Widget>[

@@ -18,10 +18,12 @@ class MyApp extends StatelessWidget {
       title: 'Splash Screen',
       theme: ThemeData(
         primaryColor: NewColor.PrimaryColors(),
-        primarySwatch: Colors.brown
+        primaryColorDark: NewColor.PrimaryColorsDark(),
+        primarySwatch: Colors.brown,
+        fontFamily: 'gotham'
       ),
-      home: MyHomePage(),
       debugShowCheckedModeBanner: false,
+      home: MyHomePage(),
     );
   }
 }
