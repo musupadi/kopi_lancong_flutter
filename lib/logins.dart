@@ -12,7 +12,7 @@ import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'Model/Ascendant.dart';
-import 'Model/SessionHelper.dart';
+import 'Model/Cashier.dart';
 
 
 class logins extends StatefulWidget {

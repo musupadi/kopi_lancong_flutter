@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:kopi_lancong_latihan/Color/colors.dart' as NewColor;
+import 'package:kopi_lancong_latihan/Model/Cashier.dart';
+import 'package:kopi_lancong_latihan/SharedPreference/db_helper.dart';
 
 class adaptercashier extends StatefulWidget {
+  final String id;
   final String img;
   final String nama;
   final String price;
-  const adaptercashier({Key? key,required this.img,required this.nama,required this.price});
+  const adaptercashier({Key? key,required this.img,required this.nama,required this.price,required this.id});
 
   @override
   State<adaptercashier> createState() => _adaptercashierState();
+
 }
 
 Widget Ada(int Tambah){
@@ -84,8 +88,38 @@ Widget Kosong(){
     ),
   );
 }
+
+
 class _adaptercashierState extends State<adaptercashier> {
   int Tambah = 0;
+  late Cashier cashiers;
+  void Plus(){
+    Tambah=Tambah+1;
+
+    if(Tambah<=1){
+      cashiers = new Cashier(id_product: int.parse(widget.id),nama: widget.nama, jumlah: Tambah, harga: int.parse(widget.price));
+      db_helper.instance.create(cashiers);
+    }else{
+      cashiers = new Cashier(id_product: int.parse(widget.id),id: int.parse(widget.id),nama: widget.nama, jumlah: Tambah, harga: int.parse(widget.price));
+      db_helper.instance.update(cashiers);
+    }
+  }
+  void Minus(){
+    Tambah=Tambah-1;
+    if(Tambah>0){
+      cashiers = new Cashier(id_product: int.parse(widget.id),nama: widget.nama, jumlah: Tambah, harga: int.parse(widget.price));
+      db_helper.instance.create(cashiers);
+    }else{
+      cashiers = new Cashier(id_product: int.parse(widget.id),nama: widget.nama, jumlah: Tambah, harga: int.parse(widget.price));
+      db_helper.instance.delete(int.parse(widget.id));
+    }
+  }
+  @override
+  void initState() {
+    // Get.to(logins);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -137,7 +171,7 @@ class _adaptercashierState extends State<adaptercashier> {
                 Divider(thickness: 2,),
                 Tambah <1 ? GestureDetector(
                     child: Kosong(),
-                    onTap: () => setState(() => Tambah=Tambah+1)
+                    onTap: () => setState(() => Plus())
                 ):
                 Container(
                   width: 200,
@@ -153,7 +187,7 @@ class _adaptercashierState extends State<adaptercashier> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         GestureDetector(
-                          onTap: () => setState(() => Tambah=Tambah-1),
+                          onTap: () => setState(() => Minus()),
                           child: Container(
                             width: 25,
                             height: 25,
@@ -175,7 +209,7 @@ class _adaptercashierState extends State<adaptercashier> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () => setState(() => Tambah=Tambah+1),
+                          onTap: () => setState(() => Plus()),
                           child: Container(
                             child: Container(
                               width: 25,
