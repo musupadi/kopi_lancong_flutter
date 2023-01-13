@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:kopi_lancong_latihan/Color/colors.dart' as NewColor;
 import 'package:kopi_lancong_latihan/Model/Cashier.dart';
 import 'package:kopi_lancong_latihan/SharedPreference/db_helper.dart';
-
+import 'package:kopi_lancong_latihan/ui/Cashier/cashier.dart';
 class adaptercashier extends StatefulWidget {
-  final String id;
-  final String img;
-  final String nama;
-  final String price;
-  const adaptercashier({Key? key,required this.img,required this.nama,required this.price,required this.id});
+  String id;
+  String img;
+  String nama;
+  String price;
+  String items;
+  String totalharga;
+  adaptercashier({Key? key,required this.img,required this.nama,required this.price,required this.id,required this.items,required this.totalharga});
 
   @override
   State<adaptercashier> createState() => _adaptercashierState();
@@ -95,22 +97,26 @@ class _adaptercashierState extends State<adaptercashier> {
   late Cashier cashiers;
   void Plus(){
     Tambah=Tambah+1;
+    int TotH = int.parse(widget.totalharga)+int.parse(widget.price);
 
+    cashier(key: UniqueKey(),);
     if(Tambah<=1){
-      cashiers = new Cashier(id_product: int.parse(widget.id),nama: widget.nama, jumlah: Tambah, harga: int.parse(widget.price));
+      cashiers = new Cashier(id_product: int.parse(widget.id),nama: widget.nama, jumlah: Tambah, harga: int.parse(widget.price),gambar: widget.img);
       db_helper.instance.create(cashiers);
     }else{
-      cashiers = new Cashier(id_product: int.parse(widget.id),id: int.parse(widget.id),nama: widget.nama, jumlah: Tambah, harga: int.parse(widget.price));
+      cashiers = new Cashier(id_product: int.parse(widget.id),id: int.parse(widget.id),nama: widget.nama, jumlah: Tambah, harga: int.parse(widget.price),gambar: widget.img);
       db_helper.instance.update(cashiers);
     }
   }
   void Minus(){
     Tambah=Tambah-1;
     if(Tambah>0){
-      cashiers = new Cashier(id_product: int.parse(widget.id),nama: widget.nama, jumlah: Tambah, harga: int.parse(widget.price));
+      print(widget.id+" : "+"Updated");
+      cashiers = new Cashier(id_product: int.parse(widget.id),nama: widget.nama, jumlah: Tambah, harga: int.parse(widget.price),gambar: widget.img);
       db_helper.instance.create(cashiers);
     }else{
-      cashiers = new Cashier(id_product: int.parse(widget.id),nama: widget.nama, jumlah: Tambah, harga: int.parse(widget.price));
+      print(widget.id+" : "+"Deleted");
+      // cashiers = new Cashier(id_product: int.parse(widget.id),nama: widget.nama, jumlah: Tambah, harga: int.parse(widget.price),gambar: widget.img);
       db_helper.instance.delete(int.parse(widget.id));
     }
   }

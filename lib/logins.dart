@@ -89,12 +89,14 @@ class _loginsState extends State<logins> {
           // Obtain shared preferences.
           final prefs = await SharedPreferences.getInstance();
 
-          await prefs.setString('id', jsonDecode(response.body)['data'][0]['id'].toString());
-          await prefs.setString('username', jsonDecode(response.body)['data'][0]['username'].toString());
+          await prefs.setString('id', jsonDecode(response.body)['data'][0]['id_user'].toString());
+          await prefs.setString('level', jsonDecode(response.body)['data'][0]['level'].toString());
           await prefs.setString('name', jsonDecode(response.body)['data'][0]['nama'].toString());
           //
           //
           String? name = prefs.getString('name');
+          String? id = prefs.getString("id");
+          String? username = prefs.getString("username");
           // var sessionManager = SessionManager();
           // await sessionManager.set("id", jsonDecode(response.body)['data'][0]['id'].toString());
           // await sessionManager.set("username", jsonDecode(response.body)['data'][0]['username'].toString());
@@ -102,7 +104,6 @@ class _loginsState extends State<logins> {
 
           // String name = await SessionManager().get("name").toString();
           LoginSuccess(name.toString());
-
         }else{
           setState(() => isLoading=false);
           FailedMessage("Login Failed", "Username atau Password Salah",context);

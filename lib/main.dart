@@ -5,9 +5,15 @@ import 'package:lottie/lottie.dart';
 import 'Color/colors.dart' as NewColor;
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:flutter/services.dart';
 import 'logins.dart';
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Step 3
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp,
+  ]).then((value) => runApp(MyApp()));
   runApp(MyApp());
 }
 

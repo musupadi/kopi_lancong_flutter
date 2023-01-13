@@ -125,6 +125,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  flutter_masked_text2:
+    dependency: "direct dev"
+    description:
+      name: flutter_masked_text2
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.1"
   flutter_session_manager:
     dependency: "direct dev"
     description:
@@ -170,6 +177,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.2"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.0"
   js:
     dependency: transitive
     description:
@@ -212,6 +226,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0"
+  money_formatter:
+    dependency: "direct dev"
+    description:
+      name: money_formatter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.3"
   path:
     dependency: transitive
     description:
@@ -309,7 +330,7 @@ packages:
       name: shared_preferences_macos
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.4"
+    version: "2.0.5"
   shared_preferences_platform_interface:
     dependency: transitive
     description:

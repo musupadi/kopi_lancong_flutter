@@ -38,7 +38,8 @@ class db_helper{
     ${CashierFields.id_product} $integerType,
     ${CashierFields.nama} $textType,
     ${CashierFields.jumlah} $integerType,
-    ${CashierFields.harga} $integerType
+    ${CashierFields.harga} $integerType,
+    ${CashierFields.gambar} $textType
     )
     ''');
   }
@@ -99,7 +100,7 @@ class db_helper{
 
     return await db.delete(
       tableNotes,
-      where: '${CashierFields.id} = ?',
+      where: '${CashierFields.id_product} = ?',
       whereArgs: [id]
     );
   }

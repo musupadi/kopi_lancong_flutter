@@ -10,9 +10,14 @@ import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:kopi_lancong_latihan/ui/Cashier/cashier.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/cupertino.dart';
-
+import 'package:money_formatter/money_formatter.dart';
 import '../logins.dart';
 
+String CalculateCurrency(String number){
+  String Bayar = number.substring(3);
+  String result = Bayar.replaceAll(".", "");
+  return result;
+}
 FailedMessage (String title,String desc,BuildContext context){
   AwesomeDialog(
       context: context,
@@ -31,7 +36,7 @@ FailedMessage (String title,String desc,BuildContext context){
 void Logout(BuildContext context) async{
   SharedPreferences pref = await SharedPreferences.getInstance();
   String id = pref.getString("id")!;
-  String username = pref.getString("username")!;
+  String username = pref.getString("level")!;
   String name = pref.getString("name")!;
   // FailedMessage("Contoh ", name.toString(), context);
 
@@ -95,7 +100,20 @@ LogoutMessage (String title,String desc,BuildContext context){
       headerAnimationLoop: false
   )..show();
 }
-
+String MoneyFormat(double amount){
+  MoneyFormatter fmf = new MoneyFormatter(
+      amount: amount,
+      settings: MoneyFormatterSettings(
+          symbol: 'IDR',
+          thousandSeparator: '.',
+          decimalSeparator: ',',
+          symbolAndNumberSeparator: ' ',
+          fractionDigits: 0,
+          compactFormatType: CompactFormatType.short
+      )
+  );
+  return fmf.output.nonSymbol;
+}
 ToCashier (BuildContext context){
   Navigator.push(
       context,
