@@ -74,7 +74,6 @@ class _loginsState extends State<logins> {
   Logins() async{
     int timeout = 5;
     setState(() => isLoading=true);
-    // LoadingMessage("Mencoba Login", "Sedang Mencoba Login", context);
     try{
       final response = await http.post(
           Uri.parse(getServerName()+Login()),body: {
@@ -92,6 +91,7 @@ class _loginsState extends State<logins> {
           await prefs.setString('id', jsonDecode(response.body)['data'][0]['id_user'].toString());
           await prefs.setString('level', jsonDecode(response.body)['data'][0]['level'].toString());
           await prefs.setString('name', jsonDecode(response.body)['data'][0]['nama'].toString());
+          await prefs.setString('name', jsonDecode(response.body)['data'][0]['id_shop'].toString());
           //
           //
           String? name = prefs.getString('name');
