@@ -236,7 +236,6 @@ class _cashierState extends State<cashier> {
           headerAnimationLoop: false
       )..show();
     }
-
   }
   Future Logic(String Kembalian) async {
     int timeout = 5;

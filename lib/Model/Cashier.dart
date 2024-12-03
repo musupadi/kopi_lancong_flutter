@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 final String tableNotes = 'apos';
 
 class CashierFields{
-
   static final List<String> values = [id,nama,jumlah,harga];
   static final String id = 'id';
   static final String id_product = 'id_product';

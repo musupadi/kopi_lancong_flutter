@@ -94,7 +94,7 @@ class _homeState extends State<home> {
                               width: 100,
                               child: CircleAvatar(
                                 backgroundColor: NewColor.PrimaryColors(),
-                                foregroundImage: AssetImage("assets/img/musupadi.jpg"),
+                                foregroundImage: AssetImage("assets/img/employee.png"),
                               ),
                             ),
                           ),
